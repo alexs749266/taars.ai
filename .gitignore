@@ -1,0 +1,9 @@
+# Confidential
+**/confidential/
+**/private/
+**/nda/
+
+# System
+.DS_Store
+*.swp
+*.log
