@@ -1,21 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TAARS.AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAARS.AI - Autonomous Underwater Sentinel System</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a1628;color:#fff;overflow-x:hidden}
+header{position:fixed;top:0;left:0;right:0;background:rgba(10,22,40,.95);backdrop-filter:blur(10px);padding:1.5rem 3rem;z-index:1000;border-bottom:1px solid rgba(255,255,255,.05)}
+.header-content{max-width:1600px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:1rem}
+.logo img{height:40px}
+.logo-text{font-size:1.3rem;font-weight:700;letter-spacing:.05em}
+nav{display:flex;gap:2rem}
+nav a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s}
+nav a:hover{color:#fff}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;background:linear-gradient(135deg,#0a1628 0%,#152238 50%,#1a3a52 100%);position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 70% 50%,rgba(34,87,122,.2) 0%,transparent 60%);pointer-events:none}
+.hero-content{max-width:1600px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-text h1{font-size:5rem;font-weight:800;line-height:1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero-text h1 .line{display:block}
+.hero-divider{width:400px;height:3px;background:#fff;margin:2rem 0}
+.hero-subtitle{font-size:1.8rem;font-weight:300;margin-bottom:3rem;letter-spacing:.02em}
+.hero-footer{font-size:1rem;color:rgba(255,255,255,.6);border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;margin-top:3rem}
+.hero-image{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-image img{max-width:100%;height:auto;filter:drop-shadow(0 20px 60px rgba(0,0,0,.5))}
+.cta-buttons{display:flex;gap:1rem;margin-top:2rem}
+.btn{padding:1rem 2rem;border:2px solid #fff;background:transparent;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .3s;display:inline-block}
+.btn:hover{background:#fff;color:#0a1628}
+section{padding:6rem 3rem;max-width:1600px;margin:0 auto}
+.section-title{font-size:3rem;font-weight:700;margin-bottom:3rem;text-align:center}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.gallery-item{position:relative;overflow:hidden;aspect-ratio:16/10;background:#152238}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-item:hover img{transform:scale(1.05)}
+.specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem}
+.spec-card{text-align:center;padding:2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1)}
+.spec-value{font-size:3rem;font-weight:700;margin-bottom:.5rem}
+.spec-label{font-size:.9rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em}
+footer{background:#050d18;padding:4rem 3rem 2rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-content{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-bottom:2rem}
+.footer-section h3{margin-bottom:1rem;font-size:1.1rem}
+.footer-section a{display:block;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:.8rem;font-size:.95rem}
+.footer-section a:hover{color:#fff}
+.copyright{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.4);font-size:.9rem}
+@media (max-width:1024px){
+.hero-content{grid-template-columns:1fr;text-align:center}
+.hero-text h1{font-size:3rem}
+.hero-divider{margin:2rem auto}
+.gallery-grid{grid-template-columns:1fr}
+.specs-grid{grid-template-columns:repeat(2,1fr)}
+nav{display:none}
+}
+</style>
 </head>
-<body style="margin:0;padding:0;background:#0a1628;color:white;font-family:sans-serif;">
-<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;">
-<div>
-<h1 style="font-size:4rem;margin-bottom:1rem;">TAARS</h1>
-<p style="font-size:1.5rem;margin-bottom:2rem;">Trigger · Autonomous · Alert · Relay · Sentinel</p>
-<p style="margin-bottom:2rem;">Autonomous Underwater Monitoring System</p>
-<div>
-<a href="https://youtu.be/AlvjGmI3BEE" style="color:white;border:2px solid white;padding:1rem 2rem;text-decoration:none;display:inline-block;margin:0.5rem;" target="_blank">WATCH DEMO</a>
-<a href="https://github.com/alexs749266/taars.ai" style="color:white;border:2px solid white;padding:1rem 2rem;text-decoration:none;display:inline-block;margin:0.5rem;" target="_blank">GITHUB</a>
-<a href="mailto:contact@taars.ai" style="color:white;border:2px solid white;padding:1rem 2rem;text-decoration:none;display:inline-block;margin:0.5rem;">CONTACT</a>
+<body>
+<header>
+<div class="header-content">
+<div class="logo">
+<img src="assets/images/logo.jpg" alt="TAARS">
+<span class="logo-text">TAARS.AI</span>
+</div>
+<nav>
+<a href="#about">About</a>
+<a href="#specs">Specifications</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+<section class="hero">
+<div class="hero-content">
+<div class="hero-text">
+<h1>
+<span class="line">Trigger</span>
+<span class="line">Autonomous</span>
+<span class="line">Alert Relay</span>
+<span class="line">Sentinel</span>
+</h1>
+<div class="hero-divider"></div>
+<div class="hero-subtitle">TAARS AI-01</div>
+<div class="cta-buttons">
+<a href="https://youtu.be/AlvjGmI3BEE" class="btn" target="_blank">WATCH DEMO</a>
+<a href="https://github.com/alexs749266/taars.ai" class="btn" target="_blank">GITHUB</a>
+<a href="mailto:contact@taars.ai" class="btn">CONTACT</a>
+</div>
+<div class="hero-footer">Developed by NUTRA Engineering Unit, Thailand</div>
+</div>
+<div class="hero-image">
+<img src="assets/images/taars-06.jpg" alt="TAARS AI-01">
 </div>
 </div>
+</section>
+<section id="about">
+<div class="section-title">Autonomous Underwater Monitoring</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+<div><img src="assets/images/taars-01.jpg" alt="TAARS" style="width:100%"></div>
+<div style="font-size:1.2rem;line-height:1.8;color:rgba(255,255,255,.8)">
+<p style="margin-bottom:1.5rem">TAARS represents a paradigm shift in underwater event detection. Passive monitoring system that deploys for months without maintenance.</p>
+<p>Zero motors. Instant response. Proven in field trials.</p>
 </div>
+</div>
+</section>
+<section id="specs">
+<div class="section-title">Technical Specifications</div>
+<div class="specs-grid">
+<div class="spec-card"><div class="spec-value">48cm</div><div class="spec-label">Height</div></div>
+<div class="spec-card"><div class="spec-value">2.5kg</div><div class="spec-label">Mass</div></div>
+<div class="spec-card"><div class="spec-value">2m/s</div><div class="spec-label">Ascent Rate</div></div>
+<div class="spec-card"><div class="spec-value">&lt;1s</div><div class="spec-label">Response Time</div></div>
+<div class="spec-card"><div class="spec-value">0</div><div class="spec-label">Motors</div></div>
+<div class="spec-card"><div class="spec-value">&lt;$5K</div><div class="spec-label">Unit Cost</div></div>
+</div>
+</section>
+<section id="gallery">
+<div class="section-title">System Overview</div>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="assets/images/taars-02.jpg" alt="TAARS 2"></div>
+<div class="gallery-item"><img src="assets/images/taars-03.jpg" alt="TAARS 3"></div>
+<div class="gallery-item"><img src="assets/images/taars-04.jpg" alt="TAARS 4"></div>
+<div class="gallery-item"><img src="assets/images/taars-05.jpg" alt="TAARS 5"></div>
+</div>
+</section>
+<footer id="contact">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Contact</h3>
+<a href="mailto:contact@taars.ai">contact@taars.ai</a>
+<a href="mailto:finealexs@gmail.com">finealexs@gmail.com</a>
+</div>
+<div class="footer-section">
+<h3>Resources</h3>
+<a href="https://github.com/alexs749266/taars.ai" target="_blank">GitHub Repository</a>
+<a href="https://youtu.be/AlvjGmI3BEE" target="_blank">Field Test Video</a>
+</div>
+<div class="footer-section">
+<h3>Applications</h3>
+<a>Port Security</a>
+<a>Early Warning Systems</a>
+<a>Marine Research</a>
+<a>Defense</a>
+</div>
+</div>
+<div class="copyright">
+<p>CLASS: UMS | SUBCLASS: PSS | SERIAL: 0001-AI</p>
+<p style="margin-top:.5rem">© 2025 TAARS.AI · NUTRA Engineering Unit</p>
+</div>
+</footer>
 </body>
 </html>
