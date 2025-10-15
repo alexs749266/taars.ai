@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TAARS.AI</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -16,19 +16,11 @@ header{position:fixed;top:0;left:0;right:0;background:rgba(10,22,40,.95);backdro
 nav{display:flex;gap:2rem}
 nav a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s}
 nav a:hover{color:#fff}
-.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;background:linear-gradient(135deg,#0a1628 0%,#152238 50%,#1a3a52 100%);position:relative}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 70% 50%,rgba(34,87,122,.2) 0%,transparent 60%);pointer-events:none}
-.hero-content{max-width:1600px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
-.hero-text h1{font-size:5rem;font-weight:800;line-height:1.1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 3rem 4rem;background-image:url('assets/images/page1.jpg');background-size:cover;background-position:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,22,40,.3);pointer-events:none}
+.hero-text{position:relative;z-index:1;text-align:center}
+.hero-text h1{font-size:6rem;font-weight:800;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.5)}
 .hero-text h1 .line{display:block}
-.hero-divider{width:400px;height:3px;background:#fff;margin:2rem 0}
-.hero-subtitle{font-size:1.8rem;font-weight:300;margin-bottom:3rem;letter-spacing:.02em}
-.hero-footer{font-size:1rem;color:rgba(255,255,255,.6);border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;margin-top:3rem}
-.hero-image{position:relative;display:flex;justify-content:center;align-items:center}
-.hero-image img{max-width:100%;height:auto;filter:drop-shadow(0 20px 60px rgba(0,0,0,.5))}
-.cta-buttons{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
-.btn{padding:1rem 2rem;border:2px solid #fff;background:transparent;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .3s;display:inline-block}
-.btn:hover{background:#fff;color:#0a1628}
 section{padding:6rem 3rem;max-width:1600px;margin:0 auto}
 .section-title{font-size:3rem;font-weight:700;margin-bottom:3rem;text-align:center}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
@@ -50,14 +42,11 @@ footer{background:#050d18;padding:4rem 3rem 2rem;border-top:1px solid rgba(255,2
 .footer-section a:hover{color:#fff}
 .copyright{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.4);font-size:.9rem}
 @media (max-width:1024px){
-.hero-content{grid-template-columns:1fr;text-align:center;gap:2rem}
 .hero-text h1{font-size:3rem}
-.hero-divider{width:200px;margin:2rem auto}
 .about-grid{grid-template-columns:1fr;gap:2rem}
 .gallery-grid{grid-template-columns:1fr}
 .specs-grid{grid-template-columns:repeat(2,1fr);gap:2rem}
 nav{display:none}
-.cta-buttons{justify-content:center}
 .footer-content{grid-template-columns:1fr;gap:2rem;text-align:center}
 }
 </style>
@@ -78,7 +67,6 @@ nav{display:none}
 </div>
 </header>
 <section class="hero">
-<div class="hero-content">
 <div class="hero-text">
 <h1>
 <span class="line">Trigger</span>
@@ -87,18 +75,6 @@ nav{display:none}
 <span class="line">Relay</span>
 <span class="line">Swarm</span>
 </h1>
-<div class="hero-divider"></div>
-<div class="hero-subtitle">TAARS AI-01</div>
-<div class="cta-buttons">
-<a href="https://youtu.be/AlvjGmI3BEE" class="btn" target="_blank">WATCH DEMO</a>
-<a href="https://github.com/alexs749266/taars.ai" class="btn" target="_blank">GITHUB</a>
-<a href="mailto:contact@taars.ai" class="btn">CONTACT</a>
-</div>
-<div class="hero-footer">Developed by NUTRA Engineering Unit, Thailand</div>
-</div>
-<div class="hero-image">
-<img src="assets/images/taars-06.jpg" alt="TAARS AI-01">
-</div>
 </div>
 </section>
 <section id="about">
