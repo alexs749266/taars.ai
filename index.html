@@ -26,9 +26,11 @@ header{position:fixed;top:0;left:0;right:0;background:rgba(10,22,40,.95);backdro
 .logo{display:flex;align-items:center;gap:1rem}
 .logo img{height:40px}
 .logo-text{font-size:1.3rem;font-weight:700;letter-spacing:.05em}
-nav{display:flex;gap:2rem}
+nav{display:flex;gap:2rem;align-items:center}
 nav a{color:rgba(255,255,255,.7);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s;cursor:pointer}
 nav a:hover{color:#fff}
+.cta-btn{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:.8rem 1.5rem;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .3s,box-shadow .3s;display:inline-block}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,.4)}
 @keyframes slowZoom{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 @keyframes beaconPulse{0%,100%{box-shadow:0 0 30px rgba(255,80,80,.8),0 0 60px rgba(255,80,80,.5),0 0 90px rgba(255,80,80,.3);opacity:1}50%{box-shadow:0 0 50px rgba(255,80,80,1),0 0 100px rgba(255,80,80,.7),0 0 150px rgba(255,80,80,.5);opacity:.7}}
 @keyframes bubble{0%{transform:translateY(0) translateX(0) scale(1);opacity:0}10%{opacity:.4}90%{opacity:.2}100%{transform:translateY(-100vh) translateX(30px) scale(0.5);opacity:0}}
@@ -51,6 +53,7 @@ nav a:hover{color:#fff}
 .hero-text h1{font-size:6rem;font-weight:800;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.5);text-align:left}
 .hero-text h1 .line{display:block}
 .hero-serial{font-size:.9rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.15em;margin-top:3rem;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.hero-cta{margin-top:3rem;display:flex;gap:1.5rem;flex-wrap:wrap}
 .slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6rem;position:relative;overflow:hidden}
 .slide-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;z-index:0}
 .slide::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,22,40,.4);pointer-events:none;z-index:1}
@@ -59,20 +62,40 @@ nav a:hover{color:#fff}
 .slide-subtitle{font-size:1.3rem;font-weight:600;margin-bottom:.5rem;color:rgba(255,255,255,.85);text-shadow:0 2px 10px rgba(0,0,0,.4)}
 .slide-text{font-size:1.1rem;line-height:1.7;color:rgba(255,255,255,.75);margin-top:2rem;text-shadow:0 2px 10px rgba(0,0,0,.3)}
 .slide-text p{margin-bottom:1rem}
+.video-section{padding:6rem 3rem;background:rgba(0,0,0,.3)}
+.video-container{max-width:900px;margin:0 auto;text-align:center}
+.video-container h2{font-size:2.5rem;font-weight:700;margin-bottom:2rem}
+.video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.contact-form{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:2rem;max-width:600px;margin:2rem auto}
+.contact-form input,.contact-form textarea{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:1rem;color:#fff;font-family:'Inter',sans-serif;font-size:1rem;margin-bottom:1rem}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.5)}
+.contact-form textarea{min-height:150px;resize:vertical}
+.contact-form button{width:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border:none;border-radius:8px;padding:1rem;color:#fff;font-weight:600;font-size:1rem;cursor:pointer;transition:transform .3s}
+.contact-form button:hover{transform:translateY(-2px)}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:2000;align-items:center;justify-content:center}
+.modal.active{display:flex}
+.modal-content{background:#0a1628;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:2rem;max-width:600px;width:90%;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
 section{padding:6rem 3rem;max-width:1600px;margin:0 auto}
 .section-title{font-size:3rem;font-weight:700;margin-bottom:3rem;text-align:center}
 .specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem}
 .spec-card{text-align:center;padding:2rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:8px}
 .spec-value{font-size:3rem;font-weight:700;margin-bottom:.5rem}
 .spec-label{font-size:.9rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em}
-.page{display:none;min-height:100vh;padding:8rem 3rem 4rem}
+.page{display:none;min-height:100vh}
 .page.active{display:block}
 footer{background:#050d18;padding:4rem 3rem 2rem;border-top:1px solid rgba(255,255,255,.05)}
-.footer-content{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-bottom:2rem}
+.footer-content{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;margin-bottom:2rem}
 .footer-section h3{margin-bottom:1rem;font-size:1.1rem}
-.footer-section a{display:block;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:.8rem;font-size:.95rem;transition:color .3s}
+.footer-section a{display:block;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:.8rem;font-size:.95rem;transition:color .3s;cursor:pointer}
 .footer-section a:hover{color:#fff}
+.social-links{display:flex;gap:1rem;margin-top:1rem}
+.social-links a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;transition:background .3s}
+.social-links a:hover{background:rgba(255,255,255,.2)}
+.social-links svg{width:20px;height:20px;fill:#fff}
 .copyright{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.4);font-size:.9rem}
+.company-info{margin-top:.5rem;font-size:.85rem}
 @media (max-width:1024px){
 .hero{padding:6rem 2rem 4rem}
 .hero-text h1{font-size:3rem}
@@ -81,8 +104,11 @@ footer{background:#050d18;padding:4rem 3rem 2rem;border-top:1px solid rgba(255,2
 .slide-title{font-size:2rem}
 .slide-text{font-size:1rem}
 .specs-grid{grid-template-columns:repeat(2,1fr)}
+.video-container h2{font-size:2rem}
 nav{display:none}
 .footer-content{grid-template-columns:1fr;text-align:center}
+.social-links{justify-content:center}
+.hero-cta{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
@@ -94,6 +120,7 @@ nav{display:none}
 <a onclick="showPage('home')">Home</a>
 <a onclick="showPage('about')">About</a>
 <a onclick="showPage('specs')">Specifications</a>
+<a href="#" class="cta-btn" onclick="openModal(); return false;">Partner With Us</a>
 </nav>
 </div>
 </header>
@@ -104,6 +131,10 @@ nav{display:none}
 <div class="hero-text">
 <h1><span class="line">Trigger</span><span class="line">AI</span><span class="line">Alert</span><span class="line">Relay</span><span class="line">Swarm</span></h1>
 <div class="hero-serial">CLASS: UMS | SUBCLASS: PSS | SERIAL: 0001-AI</div>
+<div class="hero-cta">
+<a href="#" class="cta-btn" onclick="openModal(); return false;">Partner With Us</a>
+<a href="#" class="cta-btn" onclick="openQuestionModal(); return false;">Ask a Question</a>
+</div>
 </div>
 </section>
 <section class="slide">
@@ -143,13 +174,49 @@ nav{display:none}
 </div>
 </div>
 </section>
+<section class="video-section">
+<div class="video-container">
+<h2>Demo Video</h2>
+<div class="video-wrapper">
+<iframe src="https://www.youtube.com/embed/QN2yup6PBXI" allowfullscreen></iframe>
+</div>
+</div>
+</section>
 <footer>
 <div class="footer-content">
-<div class="footer-section"><h3>Contact</h3><a href="mailto:contact@taars.ai">contact@taars.ai</a></div>
-<div class="footer-section"><h3>Resources</h3><a href="https://github.com/alexs749266/taars.ai" target="_blank">GitHub Repository</a><a href="https://youtu.be/AlvjGmI3BEE" target="_blank">Field Test Video</a></div>
-<div class="footer-section"><h3>Applications</h3><a>Port Security</a><a>Early Warning Systems</a><a>Marine Research</a><a>Defense</a></div>
+<div class="footer-section">
+<h3>Quick Links</h3>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('specs')">Specifications</a>
 </div>
-<div class="copyright"><p>CLASS: UMS | SUBCLASS: PSS | SERIAL: 0001-AI</p><p style="margin-top:.5rem">© 2025 Taars Technologies LLC</p></div>
+<div class="footer-section">
+<h3>Contact</h3>
+<a href="mailto:contact@taars.ai">contact@taars.ai</a>
+<div class="social-links">
+<a href="https://github.com/alexs749266/taars.ai" target="_blank" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+<a href="https://www.linkedin.com/company/taars-technologies" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+<a href="https://www.youtube.com/@TAARSAI01" target="_blank" title="YouTube"><svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
+</div>
+</div>
+<div class="footer-section">
+<h3>Resources</h3>
+<a href="https://github.com/alexs749266/taars.ai" target="_blank">GitHub Repository</a>
+<a href="https://youtu.be/QN2yup6PBXI" target="_blank">Demo Video</a>
+<a href="https://youtu.be/AlvjGmI3BEE" target="_blank">Field Test</a>
+</div>
+<div class="footer-section">
+<h3>Applications</h3>
+<a>Port Security</a>
+<a>Early Warning Systems</a>
+<a>Marine Research</a>
+<a>Defense</a>
+</div>
+</div>
+<div class="copyright">
+<p>CLASS: UMS | SUBCLASS: PSS | SERIAL: 0001-AI</p>
+<p class="company-info">© 2025 Taars Technologies LLC | Delaware, USA</p>
+</div>
 </footer>
 </div>
 <div id="about-page" class="page">
@@ -178,11 +245,73 @@ nav{display:none}
 </div>
 </section>
 </div>
+<div id="partner-modal" class="modal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal()">&times;</button>
+<h2 style="margin-bottom:1.5rem">Partner With Us</h2>
+<form class="contact-form" onsubmit="sendPartnerEmail(event)">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<input type="text" name="organization" placeholder="Organization (Optional)">
+<textarea name="message" placeholder="Tell us about your interest in partnering with TAARS..." required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</div>
+<div id="question-modal" class="modal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeQuestionModal()">&times;</button>
+<h2 style="margin-bottom:1.5rem">Ask a Question</h2>
+<form class="contact-form" onsubmit="sendQuestionEmail(event)">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="question" placeholder="What would you like to know about TAARS?" required></textarea>
+<button type="submit">Send Question</button>
+</form>
+</div>
+</div>
 <script>
 function showPage(page){
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
 document.getElementById(page+'-page').classList.add('active');
 window.scrollTo(0,0);
+}
+function openModal(){
+document.getElementById('partner-modal').classList.add('active');
+}
+function closeModal(){
+document.getElementById('partner-modal').classList.remove('active');
+}
+function openQuestionModal(){
+document.getElementById('question-modal').classList.add('active');
+}
+function closeQuestionModal(){
+document.getElementById('question-modal').classList.remove('active');
+}
+function sendPartnerEmail(e){
+e.preventDefault();
+const form = e.target;
+const name = form.name.value;
+const email = form.email.value;
+const org = form.organization.value;
+const message = form.message.value;
+const subject = encodeURIComponent('Partnership Inquiry - TAARS');
+const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nOrganization: ${org}\n\nMessage:\n${message}`);
+window.location.href = `mailto:contact@taars.ai?subject=${subject}&body=${body}`;
+closeModal();
+form.reset();
+}
+function sendQuestionEmail(e){
+e.preventDefault();
+const form = e.target;
+const name = form.name.value;
+const email = form.email.value;
+const question = form.question.value;
+const subject = encodeURIComponent('Question about TAARS');
+const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nQuestion:\n${question}`);
+window.location.href = `mailto:contact@taars.ai?subject=${subject}&body=${body}`;
+closeQuestionModal();
+form.reset();
 }
 </script>
 </body>
