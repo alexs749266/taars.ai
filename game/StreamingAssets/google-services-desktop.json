@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "225895501276",
+    "project_id": "petcam-5af8f",
+    "storage_bucket": "petcam-5af8f.firebasestorage.app",
+    "firebase_url": "https://petcam-5af8f-default-rtdb.firebaseio.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225895501276:android:23628de20f294ef55c9319",
+        "android_client_info": {
+          "package_name": "com.taars.petcam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE6egyFKyl8IETpXDi8-YheOIH0Ci5sGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
