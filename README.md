@@ -1,310 +1,127 @@
-# TAARS AI-01
-## Trigger · AI · Alert · Relay · Swarm
+# TAARS — Trigger AI Alert Relay System
 
-**Autonomous Underwater Monitoring System**
+**An autonomous, event-driven underwater buoy that detects a physical disturbance, surfaces on its own, and sends a geolocated alert.**
 
-<p align="center">
-  <a href="https://youtu.be/AlvjGmI3BEE"><img src="https://img.shields.io/badge/Demo-YouTube-red.svg" alt="Video Demo"/></a>
-  <a href="https://taars.ai"><img src="https://img.shields.io/badge/Web-taars.ai-blue.svg" alt="Website"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Status-Sea%20Trials%20Complete-green.svg" alt="Field Tested"/></a>
-</p>
+[![Pool Demo](https://img.shields.io/badge/Demo-Jerk%20Trigger-blue.svg)](https://youtu.be/QN2yup6PBXI)
+[![Sea Trial](https://img.shields.io/badge/Field%20Test-Sea%20Trial-green.svg)](https://youtu.be/AlvjGmI3BEE)
+[![Website](https://img.shields.io/badge/Web-taars.ai-blue.svg)](https://taars.ai)
 
----
-
-## 🌊 The Problem
-
-**Underwater hazard detection remains a critical infrastructure gap:**
-
-- Underwater landslides and seismic events are detected only after they occur
-- Marine protected areas, ports, and offshore infrastructure lack real-time subsurface monitoring
-- Existing solutions (ROVs, AUVs, surface drones) face operational constraints in cost, depth, and storm conditions
-- No scalable, passive, energy-efficient system exists for autonomous underwater event detection
+> **Status:** Proof-of-concept prototype. Built and field-tested in open-sea conditions. This repository documents the project honestly at its current early stage — see [What's proven vs. what's next](#whats-proven-vs-whats-next).
 
 ---
 
-## ⚡ Our Solution
+## The idea
 
-**TAARS: Autonomous underwater sentinel that triggers on physical events**
+Most underwater monitoring relies on cables, permanent moorings, or always-on sensor networks. These are expensive to deploy, power-hungry, and hard to scale across a wide area.
 
-### Key Features:
+TAARS takes a different approach: a small buoy rests on the seabed in a **low-power standby state** and does nothing until it detects a significant physical disturbance. On a trigger, it releases its ballast, floats to the surface, gets a GPS fix, connects over the cellular network, and sends an alert with its location.
 
-✅ **Zero motors** - Pure buoyancy ascent (2 m/s)  
-✅ **Passive standby** - Months of deployment without maintenance  
-✅ **Instant response** - <1 second from event detection to ascent  
-✅ **No tethers** - Completely autonomous  
-✅ **Low cost** - <$5,000 per unit (10-100x cheaper than alternatives)
-
-### Operating Principle:
 ```
-Deploy on Seabed → Passive Standby → Event Detection → 
-Mechanical Release → Buoyant Ascent → Surface Alert
+Seabed standby  →  Jerk trigger  →  Ballast release  →  Surface  →  GPS + GSM  →  Alert
 ```
 
 ---
 
-## 🎯 Inertial Event Response System (IERS)
+## How it works
 
-**Physical triggering eliminates prediction complexity:**
+**Jerk Trigger.** The unit watches the *rate of change* of acceleration ("jerk") rather than acceleration alone. This helps separate abrupt, high-energy events from the gentle motion of waves and currents, while keeping the device in a low-power state until something real happens.
 
-1. **Inertial sensors** detect jerk (sudden acceleration) and angular displacement
-2. **Mechanical filtering** excludes wave action, currents, biological activity  
-3. **Event detection** - landslides, seismic shocks, structural impacts
-4. **Instant decision** - When threshold exceeded → anchor releases
-5. **Autonomous ascent** - Positive buoyancy brings unit to surface at 2 m/s
+**Self-surfacing.** When the trigger fires, a Bluetooth-controlled relay deactivates an electromagnet that was holding the ballast. The unit becomes positively buoyant and rises to the surface on its own — no motors.
 
-**Advantage:** System responds to physical reality, not predictive models.
+**Alert delivery.** At the surface, the onboard smartphone acquires a GPS fix, connects over cellular, and pushes an alert to a Telegram bot with the coordinates and a map link. (See the screenshot in the technical materials.)
 
 ---
 
-## 🔧 Technical Specifications
+## Prototype at a glance
 
-### Physical Parameters
+This is an early experimental unit built from off-the-shelf and repurposed parts. The numbers below describe the **current prototype as built**, and are expected to change as the design matures.
 
-| Parameter | Value |
-|-----------|-------|
-| **Height** | 48 cm |
-| **Diameter** | 90 mm / 75 mm |
-| **Mass** | 2.5 kg |
-| **Buoyancy** | Positive (2 m/s ascent) |
-| **Materials** | Marine-grade polymers, stainless steel |
+| Parameter | Value (current prototype) |
+|---|---|
+| Height | 48 cm |
+| Diameter | ~90 mm (nose / fairing), ~80 mm (main body) |
+| Weight | ~2.5 kg in air |
+| Housing | Sealed, pressure-resistant housing (repurposed / COTS) |
+| Compute | Compact Android smartphone running a custom in-house app |
+| Sensing | 3-axis accelerometer; Jerk Trigger detection |
+| Actuation | 2-channel Bluetooth relay (ballast electromagnet + LED beacon) |
+| Power | Battery pack with step-down / step-up converters |
+| Communication | GPS + GSM via the smartphone; Telegram alert delivery |
+| Tested depth | ~5 m (open-sea, limited by free-dive filming — not a housing depth limit) |
+| Motors | None (buoyancy-driven ascent) |
 
-### Control & Communication
-
-| System | Details |
-|--------|---------|
-| **Processor** | Embedded computing system |
-| **Trigger** | >10° tilt detection (adjustable threshold) |
-| **Response Time** | <1 second from detection to release |
-| **Anchor** | Mechanical hold, instant release |
-| **Communication** | Cellular/Satellite uplink |
-| **Data Transmitted** | GPS coordinates, tilt angle, timestamp, unit ID |
-| **Optical Beacon** | 500m visibility for visual recovery |
-
-### Operational Parameters
-
-| Parameter | Value |
-|-----------|-------|
-| **Deployment Duration** | Weeks to months (configuration dependent) |
-| **Standby Power** | Minimal consumption |
-| **Ascent Rate** | 2.0 m/s (no motors required) |
-| **Storm Operations** | Yes (passive design unaffected) |
-| **Reusability** | Yes (after servicing) |
-| **Unit Cost** | <$5,000 |
+> **Note:** the test unit carried a minimal battery sufficient only for functional testing. Endurance and maximum depth rating were not goals of the initial trials — the goal was to confirm the full sequence works end to end.
 
 ---
 
-## 📊 Comparative Advantage
+## What's proven vs. what's next
 
-| Parameter | **TAARS** | ROV | AUV | Surface Drone |
-|-----------|-----------|-----|-----|---------------|
-| **Ascent Rate** | **2.0 m/s** | 0.6 m/s | N/A | N/A |
-| **Motors** | **0** | 4-8 | 1-2 | 2-4 |
-| **Tethers** | **No** | Yes | No | No |
-| **Storm Ops** | **Yes** | No | Limited | No |
-| **Deployment** | **Weeks-Months** | Hours-Days | Days-Weeks | Hours |
-| **Unit Cost** | **<$5K** | $50K-$500K | $20K-$200K | $5K-$50K |
-| **Mass Deploy** | **✅ Feasible** | ❌ Impractical | ⚠️ Limited | ⚠️ Limited |
+**Demonstrated on the prototype:**
 
-**Conclusion:** TAARS occupies a unique niche — passive, long-duration detection impossible with active systems.
+- Electromagnetic ballast retention and release via the Bluetooth relay
+- Controlled, motor-free surfacing
+- Waterproof enclosure performance in the ocean
+- Timer-based and command-based activation
+- Preliminary Jerk Trigger detection (tested with the logic on and off)
+- LED beacon operation after surfacing
+- Automated Telegram alert delivery with live GPS coordinates
 
----
+**Not yet done — future R&D:**
 
-## ✅ Field Validation
-
-### Sea Trials: Successfully Completed
-
-📹 **Watch the Field Test:** [YouTube Demo](https://youtu.be/AlvjGmI3BEE)
-
-| Test Parameter | Target | **Result** |
-|----------------|--------|------------|
-| Deployment Success | 100% | ✅ **100%** |
-| Trigger Response | <1 second | ✅ **<1s** |
-| Ascent Initiation | Immediate | ✅ **Immediate** |
-| Surface Communication | Operational | ✅ **Operational** |
-| GPS Broadcast | Accurate | ✅ **Accurate** |
-| Alert System | Functional | ✅ **Functional** |
-| Optical Beacon | Active | ✅ **Active** |
-
-**Test Environment:**
-- Location: Open water, Thailand
-- Result: All systems operational
+- Scientific validation of specific event types (e.g. seismic detection)
+- Long-duration deployment and endurance characterization
+- Depth-rating qualification of the housing
+- Communication / antenna reliability improvements after surfacing
+- Migration from a smartphone to dedicated low-power hardware
+- Multi-unit / networked operation
 
 ---
 
-## 🎯 Applications
+## Technology stack
 
-### 1. **Port & Infrastructure Security**
-- Underwater intrusion detection
-- Critical infrastructure monitoring
-- Harbor protection systems
+**Hardware:** Android smartphone (compute + GPS + GSM), 3-axis accelerometer, 2-channel Bluetooth relay, ballast electromagnet, LED beacon, battery with DC converters, sealed pressure-resistant housing.
 
-### 2. **Early Warning Systems**
-- Tsunami detection networks
-- Seismic event monitoring
-- Underwater landslide alerts
-
-### 3. **Offshore Energy**
-- Platform monitoring
-- Pipeline surveillance
-- Marine infrastructure protection
-
-### 4. **Marine Protected Areas**
-- Illegal fishing detection
-- Anchor damage prevention
-- Conservation monitoring
-
-### 5. **Oceanographic Research**
-- Event-triggered data collection
-- Long-term seabed monitoring
-- Distributed sensor networks
-
-### 6. **Defense Applications**
-- Underwater surveillance
-- Perimeter security
-- Naval base protection
+**Software:** custom Android application that monitors the accelerometer, evaluates the Jerk Trigger condition, drives the relay channels, logs data, and sends Telegram alerts. The unit can also be commanded through Telegram during testing.
 
 ---
 
-## 💼 Market Opportunity
+## Applications
 
-**Total Addressable Market:**
+TAARS is aimed at public-sector and infrastructure operators responsible for coastal monitoring, for example:
 
-| Sector | Market Size |
-|--------|-------------|
-| Maritime Security | $30B+ |
-| Oceanographic Instruments | $5B+ |
-| Offshore Monitoring | $15B+ |
-| Early Warning Systems | $10B+ |
+- Disaster-monitoring and early-warning agencies
+- Port authorities and maritime infrastructure operators
+- Coastal emergency-management organizations
+- Marine and environmental research institutions
 
-**Target Customers:**
-- Naval forces & coast guard
-- Port authorities & terminals
-- Oil & gas companies (offshore)
-- Research institutions
-- Environmental agencies
+These are target applications for a matured system, not claims about the current prototype.
 
 ---
 
-## 🚀 Development Roadmap
+## The longer-term vision
 
-### ✅ **Completed** (2025)
-- Core mechanism design
-- Software development
-- Communication systems integration
-- Mechanical anchor system
-- Pressure capsule fabrication
-- Sea trials
-- Video documentation
+The name carries the original ambition: a **swarm** of low-cost passive sentinels deployed across an area, eventually coordinating with each other (for example over acoustic links) to localize and confirm events as a network.
 
-### 🔄 **In Progress** (Q4 2025)
-- Extended depth testing
-- Long-duration deployment tests
-- Swarm network protocol development
-- Production design refinement
-- Partnership agreements
-
-### 📅 **Planned** (2026)
-- Q1 2026: Pilot deployments with research partners
-- Q2 2026: Production prototype
-- Q3 2026: Commercial launch
-- Q4 2026: Multi-unit systems
+That swarm capability is a **long-term research direction, not a current feature.** Today TAARS is a single, working, sea-tested unit. The path is: one proven node → many units across an area → a coordinated network.
 
 ---
 
-## 📱 Technology Stack
+## Media & links
 
-### Hardware
-- Embedded computing system
-- 3-axis accelerometer & gyroscope
-- GPS module
-- Cellular/Satellite communication
-- Anchor mechanism
-- Marine-grade pressure capsule
-- Optical LED beacon
-
-### Software
-- Real-time inertial sensor monitoring
-- Tilt angle calculation algorithms
-- Event detection & filtering
-- Release mechanism control
-- GPS position tracking
-- Local data logging
-- Power optimization
-
-### Communications
-- GPS coordinates
-- Inertial sensor data
-- Event timestamps
-- Device identification
-
-**Detailed technical documentation available under NDA**
+- **Pool demo (Jerk Trigger):** https://youtu.be/QN2yup6PBXI
+- **Sea trial (timed surfacing):** https://youtu.be/AlvjGmI3BEE
+- **Website:** https://taars.ai
 
 ---
 
-## 🎥 Media & Documentation
+## Contact
 
-### Public Materials:
-- 📹 **Field Test Video**: [youtu.be/AlvjGmI3BEE](https://youtu.be/AlvjGmI3BEE)
-- 🌐 **Website**: [taars.ai](https://taars.ai)
-- 💻 **GitHub**: [github.com/alexs749266/taars.ai](https://github.com/alexs749266/taars.ai)
+**Aleksandr Shakhov** — Founder, Taars Technologies LLC (Delaware, USA)
 
-### Available Under NDA:
-- Detailed technical specifications
-- Electronic schematics
-- Source code
-- Mechanical drawings
-- Test data
-- Deployment procedures
+- Email: aleksandr@taars.ai
+- Website: https://taars.ai
+- LinkedIn: https://www.linkedin.com/company/taars-technologies-llc
 
 ---
 
-## 🤝 Partnerships & Collaboration
-
-**We are seeking:**
-- Research partnerships with marine institutions
-- Pilot deployment opportunities
-- Field testing collaborations
-- Strategic partnerships
-
-**Interested in collaborating?**  
-Contact: **contact@taars.ai**
-
----
-
-## 👨‍💻 Team
-
-**Alexander Shakhov** - Founder & Chief Engineer  
-NUTRA Engineering Unit, Thailand
-
-**Contact:**
-- 📧 Email: finealexs@gmail.com
-- 🌐 Website: [taars.ai](https://taars.ai)
-
----
-
-## 📞 Get in Touch
-
-**Business inquiries:** contact@taars.ai  
-**Technical questions:** finealexs@gmail.com  
-**Website:** https://taars.ai  
-**Demo Video:** https://youtu.be/AlvjGmI3BEE
-
----
-
-## 🔒 Confidentiality
-
-Detailed technical specifications, source code, and mechanical drawings are available to qualified partners and investors under signed NDA.
-
----
-
-**CLASS:** UMS (Unmanned Maritime System)  
-**SUBCLASS:** PSS (Passive Smart Sentinel)  
-**SERIAL:** 0001-AI  
-**STATUS:** Operational Prototype  
-**ORIGIN:** NUTRA Engineering Unit, Thailand
-
----
-
-Copyright © 2025 TAARS.AI · All Rights Reserved
-
-*Intellectual Property Protected*
+*© 2026 Taars Technologies LLC. This repository documents an experimental proof-of-concept; specifications and design are subject to change during ongoing R&D.*
