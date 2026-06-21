@@ -1,0 +1,46 @@
+# TAARS — Trigger AI Alert Relay System
+
+> TAARS is an autonomous, event-driven underwater buoy that rests on the seabed in a low-power standby state, detects significant underwater physical disturbances using a "Jerk Trigger" (rate of change of acceleration), surfaces by releasing its ballast, and transmits a geolocated alert via GPS and cellular. It is developed by Taars Technologies LLC (Delaware, USA) and is currently an early proof-of-concept prototype that has been field-tested in open-sea conditions.
+
+TAARS stands for **Trigger AI Alert Relay System**. The core idea is a low-cost, low-power alternative to cabled or always-on underwater monitoring: a unit does nothing until a real event occurs, then surfaces on its own and reports its location.
+
+How it works, in sequence: seabed standby → Jerk trigger detected → Bluetooth relay releases the ballast electromagnet → unit becomes positively buoyant and surfaces (no motors) → GPS fix acquired → cellular (GSM) connection established → alert with coordinates and a map link delivered to a Telegram bot.
+
+Key facts about the current prototype:
+
+- Status: proof-of-concept; built and field-tested at sea (not a finished product).
+- Height ~48 cm; diameter ~90 mm (nose/fairing) and ~80 mm (body); weight ~2.5 kg in air.
+- Compute: a compact Android smartphone running a custom in-house application that handles sensing, the Jerk algorithm, logging, and communication.
+- Sensing: 3-axis accelerometer; Jerk Trigger detection.
+- Actuation: 2-channel Bluetooth relay (channel 1 = ballast electromagnet, channel 2 = LED beacon).
+- Power: battery pack with step-down/step-up converters (the test unit used a minimal battery for functional testing only).
+- Communication: GPS + GSM via the smartphone; alert delivery to a Telegram bot.
+- Tested depth: ~5 m in open sea (limited by free-dive filming, not a housing depth rating).
+- Housing: sealed, pressure-resistant enclosure built from off-the-shelf / repurposed parts.
+
+What is proven vs. what is future work: ballast release, motor-free surfacing, waterproofing in the ocean, timer- and command-based activation, preliminary Jerk detection, LED beacon operation, and automated Telegram alerts with live GPS have been demonstrated on the prototype. Seismic-specific validation, long-duration endurance, depth-rating qualification, communication/antenna improvements, migration to dedicated low-power hardware, and multi-unit networking are future R&D.
+
+Longer-term vision: the original ambition behind the name is a swarm of low-cost passive sentinels deployed across an area, eventually coordinating with each other (for example over acoustic links). This swarm capability is a long-term research direction, not a current feature. Today TAARS is a single, working, sea-tested unit.
+
+Target applications (for a matured system, not claims about the current prototype): disaster-monitoring and early-warning agencies, port authorities and maritime infrastructure operators, coastal emergency management, and marine/environmental research.
+
+## Key pages
+
+- [TAARS website](https://taars.ai): Project overview, system description, specifications, and demo video.
+- [Privacy policy](https://taars.ai/privacy-policy.html): Privacy policy for the TAARS website.
+
+## Media
+
+- [Pool demo — Jerk Trigger](https://youtu.be/QN2yup6PBXI): Demonstration of the Jerk Trigger detection logic in a controlled pool test.
+- [Field test — sea trial](https://youtu.be/AlvjGmI3BEE): Open-sea test showing timer-based surfacing in real conditions.
+
+## Code
+
+- [GitHub repository](https://github.com/alexs749266/taars.ai): Source for the TAARS website and project README documenting the prototype.
+
+## Contact
+
+- Company: Taars Technologies LLC, Delaware, USA
+- Founder: Aleksandr Shakhov
+- Email: aleksandr@taars.ai
+- [LinkedIn (company)](https://www.linkedin.com/company/taars-technologies-llc): Taars Technologies LLC company page.
